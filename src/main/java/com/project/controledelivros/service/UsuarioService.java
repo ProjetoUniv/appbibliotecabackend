@@ -27,6 +27,9 @@ public class UsuarioService {
     @Transactional
     public UsuarioDTO saveUsers(UsuarioDTO dto) {
         Usuario users = mapper.toEntity(dto);
+        if (users.getPassword().length() > 6) {
+            throw new BusinessException(MessageUtils.MAX_PASSWORD);
+        }
        repository.save(users);
        return mapper.toDto(users);
     }

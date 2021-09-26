@@ -20,7 +20,7 @@ public class Usuario  {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 6)
     private String password;
 
     public Long getId() {
