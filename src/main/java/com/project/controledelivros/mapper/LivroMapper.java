@@ -19,7 +19,7 @@ public class LivroMapper {
         books.setPositionShelf(dto.getPositionShelf());
         books.setDescription(dto.getDescription());
         books.setAgeGroup(dto.getAgeGroup());
-        books.setImageBook(dto.getImageBook());
+        books.setNameImage(dto.getNameImage());
         return books;
     }
 
@@ -32,7 +32,7 @@ public class LivroMapper {
         booksDto.setPositionShelf(books.getPositionShelf());
         booksDto.setDescription(books.getDescription());
         booksDto.setAgeGroup(books.getAgeGroup());
-        booksDto.setImageBook(books.getImageBook());
+        booksDto.setNameImage(books.getNameImage());
         return booksDto;
     }
 

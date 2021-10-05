@@ -4,10 +4,12 @@ import com.project.controledelivros.exceptions.BusinessException;
 import com.project.controledelivros.exceptions.NotFoundException;
 import com.project.controledelivros.mapper.LivroMapper;
 import com.project.controledelivros.model.Livro;
+import com.project.controledelivros.model.Usuario;
 import com.project.controledelivros.model.dto.LivroDTO;
 import com.project.controledelivros.repository.LivroRepository;
 import com.project.controledelivros.util.MessageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +51,12 @@ public class LivroService {
         return dto;
     }
 
-
-
+    @Transactional
+    public Boolean findByExistsBooksforTileandImage(String title, String nameImage) {
+        Optional<Livro> booksTitleImage  = repository.findByExistsBooksforTileandImage(title, nameImage);
+        if(booksTitleImage.isPresent()){
+            return  true;
+        }
+        return false;
+    }
 }

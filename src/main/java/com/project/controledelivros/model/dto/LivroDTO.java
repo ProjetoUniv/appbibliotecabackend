@@ -21,10 +21,9 @@ public class LivroDTO {
     @NotNull
     private String description;
 
-    @NotNull
     private String ageGroup;
 
-    private byte[] imageBook;
+    private String nameImage;
 
 
     public Long getId() {
@@ -67,14 +66,6 @@ public class LivroDTO {
         this.positionShelf = positionShelf;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getAgeGroup() {
         return ageGroup;
     }
@@ -83,12 +74,20 @@ public class LivroDTO {
         this.ageGroup = ageGroup;
     }
 
-    public byte[] getImageBook() {
-        return imageBook;
+    public String getNameImage() {
+        return nameImage;
     }
 
-    public void setImageBook(byte[] imageBook) {
-        this.imageBook = imageBook;
+    public void setNameImage(String nameImage) {
+        this.nameImage = nameImage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 

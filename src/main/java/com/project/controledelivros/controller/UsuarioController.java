@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -57,7 +56,7 @@ public class UsuarioController {
     }
 
     @GetMapping(value = "/email/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Boolean  findByEmailExists(@PathVariable String email, HttpServletResponse response){
+    public Boolean  findByEmailExists(@PathVariable String email){
        Boolean emailBanco =  service.findByEmailExists(email);
        if (emailBanco ){
            return true;

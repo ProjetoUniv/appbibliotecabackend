@@ -30,9 +30,8 @@ public class Livro  {
     @Column(name = "agegroup")
     private String ageGroup;
 
-    @Lob
-    @Column(name = "imagebook")
-    private byte[] imageBook;
+    @Column(name = "nameimage")
+    private String nameImage;
 
     public Long getId() {
         return id;
@@ -90,12 +89,11 @@ public class Livro  {
         this.ageGroup = ageGroup;
     }
 
-    public byte[] getImageBook() {
-        return imageBook;
+    public String getNameImage() {
+        return nameImage;
     }
 
-    public void setImageBook(byte[] imageBook) {
-        this.imageBook = imageBook;
+    public void setNameImage(String nameImage) {
+        this.nameImage = nameImage;
     }
-
 }

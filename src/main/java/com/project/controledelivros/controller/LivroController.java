@@ -9,7 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+
 import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @CrossOrigin
@@ -22,7 +27,8 @@ public class LivroController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LivroDTO> saveBooks(@Valid @RequestBody LivroDTO dto){
-        return  ResponseEntity.ok(service.saveBooks(dto));
+        dto.setNameImage(String.valueOf("livro" + dto.getNameImage()));
+        return ResponseEntity.ok(service.saveBooks(dto));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,6 +39,15 @@ public class LivroController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LivroDTO> findByIdBooks(@PathVariable Long id){
         return  ResponseEntity.ok(service.findByIdBooks(id));
+    }
+
+    @GetMapping(value = "/{title}/{nameImage}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Boolean findByExistsBooksforTileandImage(@PathVariable String title, @PathVariable String nameImage){
+        Boolean booksExists =  service.findByExistsBooksforTileandImage(title, nameImage);
+        if(booksExists){
+            return  true;
+        }
+        return  false;
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

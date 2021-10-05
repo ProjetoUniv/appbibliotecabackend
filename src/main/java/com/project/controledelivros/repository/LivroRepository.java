@@ -11,4 +11,8 @@ import java.util.Optional;
 public interface LivroRepository extends JpaRepository<Livro, Long> {
 
 
+    @Query("SELECT books " +
+            "FROM Livro books " +
+            "WHERE books.title =:title OR books.nameImage =:nameImage")
+    Optional<Livro> findByExistsBooksforTileandImage(String title, String nameImage);
 }
