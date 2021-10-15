@@ -10,6 +10,11 @@ public class LivroDTO {
     private String title;
 
     @NotNull
+    private  String isbn;
+
+    private  String amount;
+
+    @NotNull
     private String author;
 
     @NotNull
@@ -88,6 +93,22 @@ public class LivroDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
 

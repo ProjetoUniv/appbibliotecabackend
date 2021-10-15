@@ -2,6 +2,7 @@ package com.project.controledelivros.controller;
 
 
 import com.project.controledelivros.model.dto.LivroDTO;
+import com.project.controledelivros.model.dto.UsuarioDTO;
 import com.project.controledelivros.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,8 +28,17 @@ public class LivroController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LivroDTO> saveBooks(@Valid @RequestBody LivroDTO dto){
-        dto.setNameImage(String.valueOf("livro" + dto.getNameImage()));
+
         return ResponseEntity.ok(service.saveBooks(dto));
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<LivroDTO> updateBooks(@Valid @RequestBody LivroDTO dto){
+        if(dto.getNameImage().contains("livro")){
+           return ResponseEntity.ok(service.updateBooks(dto));
+        }
+        dto.setNameImage(String.valueOf("livro" + dto.getNameImage()));
+        return  ResponseEntity.ok(service.updateBooks(dto));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,7 +46,7 @@ public class LivroController {
         return  ResponseEntity.ok(service.findAllBooks());
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/detalhes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LivroDTO> findByIdBooks(@PathVariable Long id){
         return  ResponseEntity.ok(service.findByIdBooks(id));
     }
@@ -44,6 +54,15 @@ public class LivroController {
     @GetMapping(value = "/{title}/{nameImage}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Boolean findByExistsBooksforTileandImage(@PathVariable String title, @PathVariable String nameImage){
         Boolean booksExists =  service.findByExistsBooksforTileandImage(title, nameImage);
+        if(booksExists){
+            return  true;
+        }
+        return  false;
+    }
+
+    @GetMapping(value = "/{isbn}}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Boolean findByExistsBooksforIsbn(@PathVariable String isbn){
+        Boolean booksExists =  service.findByExistsBooksforIsbn(isbn);
         if(booksExists){
             return  true;
         }

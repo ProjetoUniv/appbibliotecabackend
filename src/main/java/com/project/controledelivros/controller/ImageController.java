@@ -28,6 +28,7 @@ public class ImageController {
 
 
     @GetMapping("{pid}")
+    @ResponseBody
     public void downloadImage(@PathVariable("pid") String pid, HttpServletResponse response)
     {
         try {

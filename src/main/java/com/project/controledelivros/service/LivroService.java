@@ -59,4 +59,27 @@ public class LivroService {
         }
         return false;
     }
+
+    @Transactional
+    public Boolean findByExistsBooksforIsbn(String isbn) {
+        Optional<Livro> booksIsbn  = repository.findByExistsBooksforIsbn(isbn);
+        if(booksIsbn.isPresent()){
+            return  true;
+        }
+        return false;
+    }
+
+    @Transactional
+    public LivroDTO updateBooks(LivroDTO dto) {
+
+        Optional<Livro> optionalBooks= repository.findByBooksUpdate(dto.getIsbn(), dto.getId());
+
+        if (optionalBooks.isPresent()){
+            throw new BusinessException(MessageUtils.BOOKS_EXISTS);
+        }
+
+        Livro books = mapper.toEntity(dto);
+        repository.save(books);
+        return mapper.toDto(books);
+    }
 }

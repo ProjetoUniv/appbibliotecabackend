@@ -12,6 +12,17 @@ public class Livro  {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "isbn", length = 13)
+    private  String isbn;
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
     @Column(name = "title")
     private String title;
 
@@ -30,8 +41,12 @@ public class Livro  {
     @Column(name = "agegroup")
     private String ageGroup;
 
+    @Lob
     @Column(name = "nameimage")
     private String nameImage;
+
+    @Column(name = "amount", length = 3)
+    private String amount;
 
     public Long getId() {
         return id;
@@ -96,4 +111,13 @@ public class Livro  {
     public void setNameImage(String nameImage) {
         this.nameImage = nameImage;
     }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
 }
