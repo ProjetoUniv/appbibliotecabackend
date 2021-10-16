@@ -72,9 +72,9 @@ public class LivroService {
     @Transactional
     public LivroDTO updateBooks(LivroDTO dto) {
 
-        Optional<Livro> optionalBooks= repository.findByBooksUpdate(dto.getIsbn(), dto.getId());
+        Optional<Livro> optionalBooks= repository.findByBooksUpdate(dto.getId());
 
-        if (optionalBooks.isPresent()){
+        if (optionalBooks.isPresent() == false){
             throw new BusinessException(MessageUtils.BOOKS_EXISTS);
         }
 

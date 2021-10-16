@@ -28,16 +28,11 @@ public class LivroController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LivroDTO> saveBooks(@Valid @RequestBody LivroDTO dto){
-
         return ResponseEntity.ok(service.saveBooks(dto));
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LivroDTO> updateBooks(@Valid @RequestBody LivroDTO dto){
-        if(dto.getNameImage().contains("livro")){
-           return ResponseEntity.ok(service.updateBooks(dto));
-        }
-        dto.setNameImage(String.valueOf("livro" + dto.getNameImage()));
         return  ResponseEntity.ok(service.updateBooks(dto));
     }
 
@@ -69,7 +64,7 @@ public class LivroController {
         return  false;
     }
 
-    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deletarlivro/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LivroDTO> deleteBooks(@PathVariable Long id){
         return  ResponseEntity.ok(service.deleteBooks(id));
     }

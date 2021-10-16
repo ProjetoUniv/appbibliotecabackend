@@ -26,6 +26,6 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
 
     @Query("SELECT books " +
             "FROM Livro books " +
-            "WHERE books.isbn =:isbn AND books.id  <> :id  ")
-    Optional<Livro> findByBooksUpdate(String isbn, Long id);
+            "WHERE books.id =:id ")
+    Optional<Livro> findByBooksUpdate(Long id);
 }
