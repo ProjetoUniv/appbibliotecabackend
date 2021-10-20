@@ -41,11 +41,13 @@ public class UsuarioController {
         return  ResponseEntity.ok(service.findAllUsers());
     }
 
+    @Operation(summary = "Listar o usuario pelo ID")
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsuarioDTO> findByIdUsers(@PathVariable Long id){
         return  ResponseEntity.ok(service.findByIdUsers(id));
     }
 
+    @Operation(summary = "Verificar se existe um email e senha já cadastrado")
     @GetMapping(value = "/email/{email}/password/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Boolean findByEmailandPasswordExists(@PathVariable String email, @PathVariable String password){
         Boolean result =  service.findByEmailandPasswordExists(email, password);
