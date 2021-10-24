@@ -25,11 +25,13 @@ public class UsuarioController {
     private UsuarioService service;
 
 
+    @Operation(summary = "Salvar um Usuário no banco")
     @PostMapping( consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsuarioDTO> saveUsers(@Valid @RequestBody UsuarioDTO dto){
             return  ResponseEntity.ok(service.saveUsers(dto));
     }
 
+    @Operation(summary = "Atualizar um Usuário no banco")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsuarioDTO> updateUsers(@Valid @RequestBody UsuarioDTO dto){
         return  ResponseEntity.ok(service.updateUsers(dto));
@@ -47,7 +49,7 @@ public class UsuarioController {
         return  ResponseEntity.ok(service.findByIdUsers(id));
     }
 
-    @Operation(summary = "Verificar se existe um email e senha já cadastrado")
+    @Operation(summary = "Verifica se existe um email e senha já cadastrado")
     @GetMapping(value = "/email/{email}/password/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Boolean findByEmailandPasswordExists(@PathVariable String email, @PathVariable String password){
         Boolean result =  service.findByEmailandPasswordExists(email, password);
@@ -57,6 +59,7 @@ public class UsuarioController {
         return false;
     }
 
+    @Operation(summary = "Verifica se existe um email cadastrado")
     @GetMapping(value = "/email/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Boolean  findByEmailExists(@PathVariable String email){
        Boolean emailBanco =  service.findByEmailExists(email);
@@ -66,6 +69,7 @@ public class UsuarioController {
            return false;
     }
 
+    @Operation(summary = "Deleta um usuário pelo ID ")
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsuarioDTO> deleteUsers(@PathVariable Long id){
         return  ResponseEntity.ok(service.deleteUsers(id));

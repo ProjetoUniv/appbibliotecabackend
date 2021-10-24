@@ -35,7 +35,7 @@ public class Livro  {
     @Column(name = "positionshelf")
     private String positionShelf;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 3000)
     private String description;
 
     @Column(name = "agegroup")
